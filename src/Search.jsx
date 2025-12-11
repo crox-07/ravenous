@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Search.css';
+import getBusiness from './utils/YelpAPI';
 
 const sortOptions = {
     "Best Match": "best_match",
@@ -7,14 +8,26 @@ const sortOptions = {
     "Most Reviewed": "review_count"
 };
 
-function SearchBar({ onSortChange }) {
-    const [businessTerm, setBusinessTerm] = React.useState('');
-    const [locationTerm, setLocationTerm] = React.useState('');
-    const [activeSort, setActiveSort] = React.useState('best_match')
+function SearchBar({setBusinesses}) {
+    const [businessTerm, setBusinessTerm] = useState('');
+    const [locationTerm, setLocationTerm] = useState('');
+    const [activeSort, setActiveSort] = useState('best_match')
 
     function handleSortChange(apiValue) {
         setActiveSort(apiValue);
-        onSortChange(apiValue);
+        //onSortChange(apiValue);
+    }
+    function handleBusinessChange(event) {
+        setBusinessTerm(event.target.value);
+    }
+    function handleLocationChange(event) {
+        setLocationTerm(event.target.value);
+    }
+    function handleSearch() {
+        getBusiness(businessTerm, locationTerm, activeSort).then(result => { 
+            setBusinesses(result);
+            console.log(`Result properties: ${Object.keys(result[0])}`);
+        });
     }
     
     return (
@@ -36,18 +49,18 @@ function SearchBar({ onSortChange }) {
                     value={businessTerm}
                     type="text"
                     placeholder="Search businesses"
-                    onChange={e => setBusinessTerm(e.target.value)}
+                    onChange={handleBusinessChange}
                     />
                     <input 
                     className="Search-location" 
                     value={locationTerm}
                     type="text"
                     placeholder='Where?'
-                    onChange={e => setLocationTerm(e.target.value)}
+                    onChange={handleLocationChange}
                     />
                 </div>
                 <div className="Search-button">
-                    <button>Search</button>
+                    <button onClick={handleSearch}>Search</button>
                 </div>
             </div>
         </div>

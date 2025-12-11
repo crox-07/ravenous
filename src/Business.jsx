@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './Business.css';
 
-function Business(props) {
+export function Business(props) {
     return (
-            <div className='Business'>
+        <div className='Business'>
             <div className='Business-image'>
-            <img src={props.imageSrc}/>
+                <img src={props.imageSrc}/>
             </div>
             <h2>{props.name}</h2>
             <div className='Business-content'>
@@ -25,7 +24,4 @@ function Business(props) {
     );
 }
 
-
-
-
-export { Business }
+export default Business;

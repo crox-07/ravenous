@@ -10,15 +10,25 @@ img {
     padding: 1.5rem 1rem;
     background: #f8f8f8;
     border-radius: 12px;
-    margin: 30px auto;
 }
 
 .Business h2 {
-    margin: 0 0 0.5rem 0;  
+    margin: 0 0 0.5rem 0;
+    color: #2b2b2b;  
 }
 
 .Business p {
-    margin: 0 0 0.5rem 0;  
+    margin: 0 0 0.5rem 0;
+    color: #6b6b6b;
+}
+
+.BusinessList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .Business-address,
@@ -51,12 +61,15 @@ img {
 }
 
 .Business-information {
-    line-height: 0.5;
+    /* line-height: 0.5; */
     width: 70%;
 }
 
 .Business-address p {
-    margin: 0;     
+    margin: 0;
+    line-height: 1.4;
+    overflow: visible;
+    white-space: normal;     
 }
 
 .Business-reviews {
@@ -72,7 +85,8 @@ img {
 }
 
 .rating {
-    color: #f8a602;
+    color: #f8a602 !important;
+    margin-left: auto;
     font-weight: bold;
     font-size: 16px;
 }
