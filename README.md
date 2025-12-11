@@ -34,5 +34,24 @@ This project is based on the Codecademy "Build a Front-End App with React" proje
 Clone the repo:
 
 ```bash
-git clone https://github.com/<your-username>/ravenous.git
+git clone https://github.com/crox-07/ravenous.git
 cd ravenous
+```
+
+Create a file named .env in the root of the project, and inside include:
+VITE_YELP_API_KEY=your_yelp_api_key_here
+
+Inside vite.config.js, include:
+server: {
+  proxy: {
+    '/api': {
+      target: 'https://api.yelp.com/v3',
+      changeOrigin: true,
+      rewrite: (path) => path.replace(/^\/api/, ''),
+    },
+  },
+}
+
+To run the app, run dev:
+```bash
+npm run dev
